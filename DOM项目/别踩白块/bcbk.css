@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    border-collapse: collapse;
+    /* 去除单元格之间的间隙 */
+    box-sizing: border-box;
+    /* 让边框宽度计入方块尺寸 */
+}
+
+/* 最外面那层游戏框 */
+#main {
+    width: 400px;
+    height: 450px;
+    border: 1px solid black;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 60px;
+    position: relative;
+}
+
+/* 所有的内部方块构成的整体容器 */
+#container {
+    width: 400px;
+    position: absolute;
+}
+
+/* 选择难度 和 开始按钮 的父盒子 */
+.choose {
+    display: flex;
+    align-items: center;
+    /* 子元素垂直居中 */
+    justify-content: center;
+    /* 子元素水平居中 */
+    margin: 10px auto;
+    width: 400px;
+    height: 50px;
+    font-size: 20px;
+}
+
+/* 选择难度按钮 */
+#difficulty {
+    margin-right: 10px;
+}
+
+/* 分数 */
+#scoreDisplay {
+    margin-left: 10px;
+}
+
+/* 方块：默认白色 */
+.cell {
+    width: 100px;
+    height: 100px;
+    float: left;
+    background-color: white;
+    /* border: 0.1px solid black; */
+
+}
+
+/* 黑块 */
+.cellblack {
+    background-color: black;
+}
+
+
+/* 白块 */
+.cellbwhite {
+    background-color: white;
+}
+
+/* 黑块放大动画 */
+@keyframes grow {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        /* 完全不透明 */
+    }
+
+    100% {
+        transform: scale(1.4);
+        /* 放大1.4倍数 */
+        opacity: 0;
+        /* 完全透明 */
+    }
+}

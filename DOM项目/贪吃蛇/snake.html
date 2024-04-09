@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>snake</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 地图 */
+        .map {
+            width: 400px;
+            height: 400px;
+            background-color: black;
+            margin: 0 auto;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        /* 蛇 */
+        .snake {
+            /* 蛇的宽高 */
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            /* 确保蛇在地图内 */
+            position: absolute;
+        }
+
+        /* 食物 */
+        .food {
+            /* 食物的宽高 */
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            /* 确保食物在地图内 */
+            position: absolute;
+
+        }
+
+        /* 得分 */
+        .score {
+            position: absolute;
+            bottom: 10px;
+            /* 距离底部10px */
+            left: 10px;
+            /* 距离左侧10px */
+            color: white;
+            /* 设置分数颜色为白色 */
+        }
+
+        /* 墙 */
+        .wall1 {
+            width: 20px;
+            height: 80px;
+            background-color: gray;
+            position: absolute;
+            top: 40px;
+            left: 140px;
+        }
+
+        .wall2 {
+            width: 20px;
+            height: 80px;
+            background-color: gray;
+            position: absolute;
+            top: 180px;
+            left: 40px;
+        }
+
+        .wall3 {
+            width: 140px;
+            height: 20px;
+            background-color: gray;
+            position: absolute;
+            top: 300px;
+            left: 140px;
+        }
+
+        .wall4 {
+            width: 140px;
+            height: 20px;
+            background-color: gray;
+            position: absolute;
+            top: 200px;
+            left: 200px;
+        }
+
+        .wall5 {
+            width: 140px;
+            height: 20px;
+            background-color: gray;
+            position: absolute;
+            top: 120px;
+            left: 140px;
+        }
+
+        .wall6 {
+            width: 20px;
+            height: 120px;
+            background-color: gray;
+            position: absolute;
+            top: 240px;
+            left: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="map">
+        <div class="food"></div>
+        <div class="snake"></div>
+        <div class="score">Score: 0</div>
+        <div class="wall1">1</div>
+        <div class="wall2">2</div>
+        <div class="wall3">3</div>
+        <div class="wall4">4</div>
+        <div class="wall5">5</div>
+        <div class="wall6">6</div>
+    </div>
+    <script src="./snake.js"></script>
+</body>
+
+</html>
+
+<!-- 
+重点在于：遍历墙数组，检查蛇是否与墙发生碰撞（在snake.js最后）
+ -->

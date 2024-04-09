@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <title>发表留言</title>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="header container">
+        <div class="page-header">
+            <h1><a href="/">首页</a> <small>发表留言</small></h1>
+        </div>
+    </div>
+    <!-- 评论 -->
+    <div class="comments container">
+        <form action="/doadd" method="get">
+            <div class="form-group">
+                <label for="input_name">姓名</label>
+                <input type="name" class="form-control" id="input_name" placeholder="请输入姓名" minlength="2" maxlength="10"
+                    name="name">
+            </div>
+            <div class="form-group">
+                <label for="input_message">留言内容</label>
+                <textarea class="form-control" name="content" cols="30" rows="10" required minlength="5"
+                    maxlength="20"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">发表</button>
+        </form>
+    </div>
+</body>
+
+</html>

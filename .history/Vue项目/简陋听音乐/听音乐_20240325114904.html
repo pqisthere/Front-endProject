@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>听音乐</title>
+    <!-- 导入样式 -->
+    <link rel="stylesheet" href="./listen.css">
+</head>
+
+<body>
+
+    <!-- 播放器主体区域 -->
+    <div class="main" id="player">
+
+        <!-- 搜索歌曲区域 -->
+        <div class="search_bar">
+            <!-- autocomplete="off"告诉浏览器不要记住或预测用户可能会输入的内容，并不要提供自动填充的建议 -->
+            <input type="text" autocomplete="off" v-model="query" @keyup.enter="searchMusic" />
+            <!-- 用于显示图标的伪元素 -->
+            <span class="search_icon" @click="searchMusic"></span>
+        </div>
+
+        <!-- 中间区域 -->
+        <div class='center'>
+            <!-- 歌曲列表 -->
+            <ul class="song_list">
+                <li v-for="item in musicList">
+                    <a href="javascript:;" @click="playMusic(item.id)"></a>
+                    <b @click="playMusic(item.id)">{{ item.name }}</b>
+                    
+                </li>
+            </ul>
+        </div>
+
+        <!-- 底部音频播放 -->
+        <audio ref='audio' @play="play" @pause="pause" :src="musicUrl" controls autoplay loop class="myaudio"></audio>
+
+    </div>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 官网提供的 axios 在线地址 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 自己的js -->
+    <script src="./listen.js"></script>
+
+</body>
+
+</html>

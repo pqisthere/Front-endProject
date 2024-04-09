@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>查天气</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+    <div class="wrap" id="app">
+
+        <!-- 搜索框 -->
+        <div class="search_form">
+            <div class="logo"><img src="img/logo.png" alt="logo" /></div>
+            <div class="form_group">
+                <input type="text" class="input_txt" placeholder="请输入查询的城市" 
+                v-model="city"
+                    @keyup.enter="queryWeather" />
+                <button class="input_sub" @click="queryWeather">
+                    搜 索
+                </button>
+            </div>
+
+            <!-- 热门城市 -->
+            <div class="hotkey">
+                <a href="javascript:;" v-for="city in hotCitys" 
+                @click="clickSearch(city)">{{ city }}</a>
+            </div>
+
+        </div>
+
+        <!-- 天气列表 -->
+        <ul class="weather_list">
+            <li v-if="weatherData" v-for="(day, index) in weatherData" :key="index">
+                <!-- 天气 -->
+                <div class="info_type">
+                    <span class="iconfont">{{ day.textDay }}</span>
+                </div>
+                <!-- 温度 -->
+                <div class="info_temp">
+                    <b>{{ day.tempMin }}</b> ~ <b>{{ day.tempMax }}</b> °C
+                </div>
+                <!-- 日期 -->
+                <div class="info_date">
+                    <span>{{ day.fxDate }}</span>
+                </div>
+                <!-- 空气质量 -->
+                <div class="quality">
+                    <p>空气质量指数: {{ airQualities[index].aqi }}</p>
+                    <p>空气质量级别: {{ airQualities[index].category }}</p>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./查天气.js"></script>
+</body>
+
+</html>
+<!-- 
+回车查询
+应用的逻辑代码建议和页面分离，使用单独的js文件编写
+axios回调函数中this指向改变了，需要额外的保存一份
+服务器返回的数据比较复杂时，获取的时候需要注意层级结构
+
+点击查询
+自定义参数可以让代码的复用性更高
+methods中定义的方法内部，可以通过this关键字点出其他的方法
+
+ -->

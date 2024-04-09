@@ -1,0 +1,124 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* 整个主体 */
+.main {
+    background-color: white;
+    border-radius: 5px;
+    width: 400px;
+    height: 375px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid pink;
+}
+
+/* 整个顶部 */
+.search_bar {
+    height: 60px;
+    background-color: pink;
+    display: flex;
+    /* 垂直居中 */
+    align-items: center;
+    /* 子元素之间的空间会均等分布 */
+    justify-content: space-between;
+    position: relative;
+    /* z-index: 11; */
+}
+
+/* 输入框 */
+.search_bar input {
+    margin-left: 20px;
+    width: 310px;
+    height: 35px;
+    border-radius: 15px;
+    border: 3px rgb(189, 182, 182) solid;
+    text-indent: 15px;
+    outline: none;
+}
+
+/* 搜索图标 */
+.search_icon {
+    cursor: pointer;
+    /* 使得图标可以显示 */
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url("/Vue/4-综合应用（听音乐）/images/zoom.png") no-repeat center;
+    background-size: contain;
+    /* 保持图片比例 */
+    margin-right: 17px;
+    /* 添加一些左边距，使图标与输入框隔开 */
+}
+
+/* 中间，整个歌曲列表 */
+.center {
+    height: 250px;
+    width: 400px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* 歌曲列表 */
+.song_list {
+    width: 400px;
+    /* 当内容溢出时显示纵向滚动条 */
+    overflow-y: auto;
+    height: 100%;
+}
+
+/* 歌曲列表项 */
+.song_list li {
+    font-size: 14px;
+    color: #333;
+    height: 40px;
+    /* 使用弹性布局 */
+    display: flex;
+    /* 超出容器时换行显示 */
+    flex-wrap: wrap;
+    /* 垂直居中 */
+    align-items: center;
+    padding-left: 10px;
+}
+
+/* 奇数行的背景颜色 */
+.song_list li:nth-child(odd) {
+    background-color: rgb(252, 233, 236);
+}
+
+/* 偶数行的背景颜色 */
+.song_list li:nth-child(even) {
+    background-color: rgb(223, 222, 222);
+}
+
+/* 歌名左侧播放按钮 */
+.song_list li a {
+    display: block;
+    width: 17px;
+    height: 17px;
+    background-image: url("images/play.png");
+    background-size: 100%;
+}
+
+/* 设置歌曲名字的样式 */
+.song_list li b {
+    padding-left: 5px;
+    cursor: pointer;
+    font-weight: normal;
+    overflow: hidden;
+    /* 当文本溢出时，应显示省略号来表示文本已被截断 */
+    text-overflow: ellipsis;
+    /* 文本不会自动换行，即使在容器边缘也会继续在同一行内显示 */
+    white-space: nowrap;
+}
+
+/* 底部播放器 */
+.myaudio {
+    width: 400px;
+    background-color: #f1f3f4;
+}

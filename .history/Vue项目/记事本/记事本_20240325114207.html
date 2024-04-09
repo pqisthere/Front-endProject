@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记事本</title>
+    <link rel="stylesheet" href="./.css">
+</head>
+
+<body>
+    <!-- 主体区域的容器，使用Vue.js绑定 -->
+    <section id="todoapp">
+
+        <!-- 输入框和标题的容器 -->
+        <header class="header">
+            <h1>记事本</h1>
+            <input v-model="inputValue" @keyup.enter="add" autofocus="autofocus" 
+            autocomplete="off" placeholder="请输入任务" class="new-todo">
+        </header>
+
+        <!-- 待办事项列表的容器 -->
+        <section class="main">
+            <!-- 待办事项列表 -->
+            <ul class="todo-list">
+                <li class="todo" v-for="(item,index) in list">
+                    <div class="view">
+                        <span class="index">{{index+1}}.</span>
+                        <label>{{item}}</label>
+                        <button class="destroy" @click="remove(index)"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 统计和清空按钮的容器 -->
+        <footer class="footer">
+            <span class="todo-count" v-if="list.length!=0">
+                剩余<strong>{{list.length}}</strong>个待办
+            </span>
+            <button v-show="list.length!=0" class="clear-completed" @click="clear">
+                一键清空
+            </button>
+        </footer>
+    </section>
+
+    <!-- 引入Vue.js框架 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+    <script>
+        // 创建Vue实例
+        var app = new Vue({
+            el: "#todoapp",//将id为todoapp的DOM元素挂载到Vue实例
+            data: {
+                //待办事项列表的初始数据
+                list: ["写代码", "吃饭饭", "睡觉觉"],
+                //输入框的初始值
+                inputValue: "哈哈哈"
+            },
+            methods: {//Vue实例的方法
+
+                add: function () {//增加
+                    this.list.push(this.inputValue);
+                },
+
+                remove: function (index) {//删除
+                    console.log("删除");
+                    console.log(index);
+                    this.list.splice(index, 1);
+                },
+                
+                clear: function () {//清空
+                    this.list = [];
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
+
+<!-- 
+新增
+v-for根据一个数组生成列表结构
+v-model双向绑定数据，可以把表单的内容和data的数据关联，可快速设置和获取表单元素的值
+v-on绑定事件时传递自定义参数，结合事件修饰符对事件进行限制，如@keyup.enter
+通过审查元素快速定位
+
+删除
+数据改变，和数据绑定的元素同步改变
+事件的自定义参数
+splice方法：根据索引删除对应元素
+
+统计
+基于数据的开发方式，页面是数据的展示，所有和数据相关的内容，只需找到对应的数据即可
+比如，记事本里todo事项的个数，本质是数组的长度
+（早期是基于Dom）
+v-text设置文本，缩写{{}}（插值表达式）
+
+清空
+清空数组
+
+隐藏
+
+- `v-model="inputValue"`：Vue.js的双向数据绑定指令。
+它将这个输入框的值与Vue实例中的`inputValue`属性进行绑定。
+这意味着当输入框的值发生变化时，`inputValue`的值也会相应地更新，反之亦然。
+
+- `@keyup.enter="add"`：Vue.js的事件监听器指令，用于监听键盘事件。
+`@keyup.enter`表示当按下回车键时触发事件，`add`表示触发的事件是Vue实例中定义的`add`方法。
+
+- `autofocus="autofocus"`：HTML的属性，页面加载完成后，输入框会自动获得焦点。
+
+- `autocomplete="off"`：HTML的属性，禁用浏览器的自动填充之前输入过的内容。
+
+- `placeholder="请输入任务"`：HTML的属性，在输入框中显示灰色的占位符文本，对用户的提示。
+
+- `class="new-todo"`：HTML的属性，用于为这个输入框指定一个CSS类名，
+从而可以通过CSS样式表对其进行样式设计或者选择器选中。
+
+
+-->

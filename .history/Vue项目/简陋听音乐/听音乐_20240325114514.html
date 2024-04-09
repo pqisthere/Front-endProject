@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>听音乐</title>
+    <!-- 样式 -->
+    <link rel="stylesheet" href="./听音乐.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 播放器主体区域 -->
+        <div class="play_wrap" id="player">
+
+            <!-- 顶部区域 -->
+            <div class="search_bar">
+                <img src="images/player_title.png" alt="">
+                <!-- 搜索歌曲 -->
+                <input type="text" autocomplete="off" v-model="query" @keyup.enter="searchMusic">
+            </div>
+
+            <!-- 中间区域 -->
+            <div class="center_con">
+
+                <!-- 中间左侧，歌曲列表 -->
+                <div class="song_wrapper">
+                    <!-- 歌曲列表 -->
+                    <ul class="song_list">
+                        <li v-for="item in musicList">
+                            <a href="javascript:;" @click="playMusic(item.id)"></a>
+                            <b>{{item.name}}</b>
+                            <span v-if="item.mvid!=0" @click="playMV(item.mvid)"><i></i></span>
+                        </li>
+                    </ul>
+                    <!-- 左边的分割竖线 -->
+                    <img src="images/line.png" class="switch_btn" alt="">
+                </div>
+
+                <!-- 中间中部，歌曲信息容器 -->
+                <div class="player_con" :class="{playing:isPlaying}">
+                    <img src="images/player_bar.png" class="player_bar">
+                    <img src="images/disc.png" class="disc autoRotate">
+                    <!-- 黑胶碟片 -->
+                    <img src="images/disc.png" class="disc autoRotate">
+                    <img :src="musicCover" class="cover autoRotate" alt="">
+                </div>
+
+                <!-- 中间右侧，评论容器 -->
+                <div class="comment_wrapper">
+                    <h5 class='title'>热门留言</h5>
+                    <div class='comment_list'>
+                        <dl v-for="item in hotComments">
+                            <!-- 用户头像 -->
+                            <dt><img :src="item.user.avatarUrl" alt=""></dt>
+                            <!-- 用户昵称 -->
+                            <dd class="name">{{ item.nickname}}</dd>
+                            <!-- 用户评论内容 -->
+                            <dd class="detail">
+                                {{ item.content }}
+                            </dd>
+                        </dl>
+                    </div>
+                    <!-- 右边的分割竖线 -->
+                    <img src="images/line.png" class="right_line">
+                </div>
+            </div>
+
+            <!-- 底部音频播放 -->
+            <div class="audio_con">
+                <audio ref='audio' @play="play" @pause="pause" :src="musicUrl" controls autoplay loop
+                    class="myaudio"></audio>
+            </div>
+            
+            <!-- mv播放 -->
+            <div class="video_con" v-show="isShow" style="display: none;">
+                <video :src="mvUrl" controls="controls"></video>
+                <div class="mask" @click="hide"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 官网提供的 axios 在线地址 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 自己的js -->
+    <script src="./听音乐.js"></script>
+</body>
+
+</html>
+
+<!-- 
+歌曲搜索
+服务器返回的数据比较复杂时，获取的时候要注意层级结构
+通过审查元素快速定位到需要操纵的元素
+
+歌曲播放
+歌曲id以来歌曲搜索的结果，对于不用的数据也需关注
+
+歌曲封面
+在Vue中通过v-bind操纵属性
+本地无法获取的数据，基本都会有对应的接口
+
+歌曲评论
+在vue中通过v-for生成列表
+
+播放动画
+audio标签的play事件会在音频播放的时候触发
+audio标签的pause事件会在音频暂停的时候触发
+通过对象的方式设置类名，类名生效与否取决于后面值的真假
+
+mv播放
+不同的接口需要的数据是不同的，文档的阅读要仔细
+页面结构复杂，可通过审查元素的方式去快速定位相关元素
+响应式的数据一定要在data中定义
+ -->

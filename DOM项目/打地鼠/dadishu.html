@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打地鼠</title>
+    <link rel="stylesheet" type="text/css" href="dadishu.css">
+</head>
+
+<body>
+
+    <div class="bg">
+        <div class="frame">
+            <table class="box">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="countdown">倒计时：</div>
+    </div>
+    <script src="dadishu2.js"></script>
+
+</body>
+
+</html>
+
+<!-- 
+打地鼠dadishu2.js整体思路：
+1.制作3*3的表格
+2.每个单元格都添加地鼠的图片，并全部隐藏（添加hidden类）
+3.随机生成一个数，显示该数位置的地鼠（去除该位置的hidden类）
+4.如果点击到去除hidden类的（即显示的）地鼠，触发点击事件
+5.点击事件3s内触发3次，成功；否则失败 
+
+打地鼠dadishu.js整体思路：
+1.制作3*3的表格
+2.创建一个地鼠图片并添加到随机单元格中
+3.给地鼠图片添加点击事件（2s内需点击一次）
+4.点击成功后刷新页面，此时地鼠又会随机出现
+5.将sum值保存在本地存储中，这样sum不会随着reload而清零，
+  sum=4（连续四次2s内都点击了）即成功
+
+-->

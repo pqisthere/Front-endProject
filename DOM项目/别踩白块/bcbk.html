@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>别踩白块</title>
+    <link rel="stylesheet" href="bcbk.css">
+
+</head>
+
+<body>
+    <audio id="audioPlayer">
+        <source src="点击.mp3" type="audio/mpeg">
+    </audio>
+    <div id="main">
+        <div id="container"></div>
+    </div>
+    <div class="choose">
+        <select id="difficulty">
+            <option value="easy">初级</option>
+            <option value="medium">中级</option>
+            <option value="hard">高级</option>
+        </select>
+        <button id="startbt">开始游戏</button>
+        <div id="scoreDisplay">分数: 000</div>
+    </div>
+    <script src="bcbk.js"></script>
+
+</body>
+
+</html>
+
+<!-- 改进：
+我是将所有的黑白块一开始就生成好放在容器里，容器高度设置非常高；
+然后让容器整个往下降，超过main的部分隐藏，实现看起来下落的效果，但这样负担较大
+理想中应该是容器内的每一行依次下降（而不是容器下降），
+最底部一行越界消失，顶部则新增一行，但是我无法实现
+ -->
+
+ <!-- 
+整体思路：
+1.设置一个游戏界面main（最外面一圈方框）
+2.main内部放置一个容器container，容器非常长，且容器底部位于main的顶部
+3.将容器内的黑块和白块事先处理好，并将黑块存储在黑块数组中
+    容器黑白块处理：①生成一行的黑白块 ②遍历生成一整个容器的黑白块
+4.点击开始按钮后，容器开始向下移动，使黑白块随之下落
+  容器超出main的部分均会被隐藏
+5.点击黑块，黑块变白，并清除黑块数组中的值
+6.当黑块数组中任意一个黑块触碰到mai底部时，游戏结束
+补充：难度不同速度不同，对于速度的控制：
+    setInterval(moveContainerDown, 20);每隔20毫秒调用下落函数
+        下落函数里获取当前容器的top值（var top = parseInt(container.style.top) || initialTop;）
+        再更新容器的top值，使容器向下移动（container.style.top = top + speed + "px";）
+-->

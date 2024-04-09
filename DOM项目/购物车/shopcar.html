@@ -1,0 +1,64 @@
+<!-- 
+能够新增减少商品数量
+能够新增商品种类
+能够计算商品总价，总价随着商品数量变化而变化
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>购物车</title>
+	<link rel="stylesheet" type="text/css" href="shopcar.css">
+</head>
+
+<body>
+	<!-- 整体框架 -->
+	<div id="frame">
+		<div id="list">
+			<!-- 单个元素样式案例 -->
+			<div class="unit">
+				<img src="./img/img1.jpg" alt="">
+				<div>
+					<p>鲜花</p>
+					<p>单价<b class="jiage">10</b>元</p>
+					<p>简介:平平无奇的一朵鲜花</p>
+					
+				</div>
+				<div>
+					<div class="add">+</div>
+					<div class="geshu">0</div>
+					<div class="sub">-</div>
+					<div class="delete">del</div>
+				</div>
+			</div>
+		</div>
+		<div id="set">
+			名称:<input type="text" id="name">
+			单价:<input type="text" id="price">
+			描述:<input type="text" id="description">
+			<!-- 
+            添加图片:<input type="file" id="imageUpload"> 
+            -->
+			<input id="tijiao" type="button" value="新增">
+			<p>
+			<h1>总价:<b id="sum">0</b></h1>
+			</p>
+		</div>
+	</div>
+	<script src="shopcar.js"></script>
+	
+</body>
+
+</html>
+<!-- 
+整体思路：
+1.先写一个初始商品，包含名称，单价，描述，然后将其隐藏
+2.克隆初始商品，重置其名称，单价，描述
+3.点击新增，将克隆的商品添加进去
+
+补充：
+1.一定要为初始商品添加事件监听器,否则初始商品无法+-del
+2.每一步操作都要更新总价 
+-->

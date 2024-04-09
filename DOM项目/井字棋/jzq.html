@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="jzq.css">
+</head>
+<body>
+  <table>
+    <tr>
+      <td class="cell"></td>
+      <td class="cell"></td>
+      <td class="cell"></td>
+    </tr>
+    <tr>
+      <td class="cell"></td>
+      <td class="cell"></td>
+      <td class="cell"></td>
+    </tr>
+    <tr>
+      <td class="cell"></td>
+      <td class="cell"></td>
+      <td class="cell"></td>
+    </tr>
+  </table>
+
+  <div class="endgame">
+    <div class="text"></div>
+  </div>
+
+  <script src="jzq.js"></script>
+</body>
+</html>
+
+<!-- 
+整体思路：
+1.设置3*3表格，并去除表格的外边线，呈现“＃”字
+2.给每个格子添加点击监听，如果当前点击的格子为空且游戏未结束，判断输赢平
+  2.1胜利
+      lines存储所有可能胜利的情况，line依次表示lines中的每个子数组
+      用for (let line of lines)循环遍历，三个格子都不为空，且它们的文本内容都相同
+  2.2平
+      循环遍历所有格子，发现都不为空，则为平局
+3.输赢平均不是，则切换玩家 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';继续游戏
+-->

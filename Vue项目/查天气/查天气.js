@@ -5,7 +5,7 @@ new Vue({
         weatherData: null,
         airQualities: null, // 添加空气质量数据
         hotCitys: ["北京", "上海", "广州", "深圳"],
-        apiKey: "a746068391a84838a3b7f28b11349149" // 直接将 API 密钥硬编码到 JavaScript 中
+        apiKey: "这里改成你申请的apiKey" // 直接将 API 密钥硬编码到 JavaScript 中
     },
     methods: {
         // 查询天气

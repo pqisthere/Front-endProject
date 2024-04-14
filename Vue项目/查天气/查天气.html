@@ -6,30 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>查天气</title>
-    <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 
 <body>
-    <div class="wrap" id="app">
-
-        <!-- 搜索框 -->
-        <div class="search_form">
-            <div class="logo"><img src="img/logo.png" alt="logo" /></div>
-            <div class="form_group">
-                <input type="text" class="input_txt" placeholder="请输入查询的城市" 
-                v-model="city" @keyup.enter="queryWeather" />
-                <button class="input_sub" @click="queryWeather">
-                    搜 索
-                </button>
+    <div id="app">
+        <div class="logo"><img src="img/logo.png" alt="logo" /></div>
+        <div class="header">
+            <!-- 搜索框 -->
+            <div class="input_group">
+                <el-input class="input_border" v-model="city" placeholder="请输入查询的城市"
+                    @keyup.enter.native="queryWeather"></el-input>
+                <el-button class="input_sub" @click="queryWeather">搜索</el-button>
             </div>
 
             <!-- 热门城市 -->
-            <div class="hotkey">
-                <a href="javascript:;" v-for="city in hotCitys" 
-                @click="clickSearch(city)">{{ city }}</a>
-            </div>
-
+            <el-row class="hotkey-container">
+                <el-tag class="hotkey" v-for="city in hotCitys" :key="city" @click="clickSearch(city)">{{ city
+                    }}</el-tag>
+            </el-row>
         </div>
 
         <!-- 天气列表 -->
@@ -55,11 +51,15 @@
             </li>
         </ul>
 
+
     </div>
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script src="./查天气.js"></script>
+
 </body>
 
 </html>
